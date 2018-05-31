@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+</head>
+<body>
+        <div id="header">
+            <h1>Welcome, {{request.session.name}} !</h1>
+            <a href="/">Log Out</a>
+        </div>
+        <div>
+            <h2>Your Wish List:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>added by</th>
+                        <th>Date Added</th>
+                        <th>Action!</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in my_wishes %}
+                    <tr> 
+                        <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+                        <td>{{item.added_by.name}}</td>
+                        <td>{{item.created_at}}</td>
+                        <td><a href="/removew/{{item.id}}">Remove from wishlist</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h2>Other Users wish list:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>added by</th>
+                        <th>Date Added</th>
+                        <th>Action!</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr> 
+                        <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+                        <td>{{item.added_by.name}}</td>
+                        <td>{{item.created_at}}</td>
+                        <td><a href="/addw/{{item.id}}">Add to my wishlist</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <a href="/wish_item/create/">Add Item</a>
+</body>
+</html>

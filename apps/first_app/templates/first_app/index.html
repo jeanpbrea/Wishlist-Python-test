@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login | Registration</title>
+    <style>
+        #wrapper{
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+        }
+        #left {
+            display: inline-block;
+        }
+        #right {
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+            <h1>Welcome!</h1>
+            <form action="/register/" id="left" method="POST">   
+                {% csrf_token %}
+                <fieldset>
+                    <h2>Register!</h2>
+                    <p>
+                        Name:<input type="text" name="name">
+                    </p>
+                    <p>
+                        Alias:<input type="text" name="alias">
+                    </p>
+                    <p>
+                        Email:<input type="email" name="email">
+                    </p>
+                    <p>
+                        Password:<input type="password" name="password">
+                    </p>
+                    <p>
+                        Confirm PW:<input type="password" name="confirm">
+                    </p>
+                    <p>
+                        Date of Birth:<input type="date" name="dob">
+                    </p>
+                    <input type="submit" value="Register!" name="register">
+                </fieldset>
+            </form>
+            <form action="/login/" id="right" method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <h2>Login!</h2>
+                    <p>
+                        Email:<input type="email" name="email">
+                    </p>
+                    <p>
+                        Password:<input type="password" name="password">
+                    </p>
+                    <input type="submit" value="Login!" name="login">
+                </fieldset>
+            </form>
+        </div>
+        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+</body>
+</html>

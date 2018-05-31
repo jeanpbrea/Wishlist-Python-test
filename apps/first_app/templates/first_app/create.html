@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Item</title>
+</head>
+<body>
+        <h1>Welcome, {{request.session.name}}
+    <h1>Create a new Item</h1>
+    <form action="/create/" method='POST'>
+        <fieldset>
+            {% csrf_token %}
+            <p>
+                Item: <input type="text" name="item">
+            </p>
+            <input type="submit" value="Add">
+        </fieldset>
+    </form>
+    <a href="/dashboard/">Home</a> | <a href="/">Logout</a>
+</body>
+</html>
