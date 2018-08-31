@@ -28,7 +28,14 @@
                         <td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
                         <td>{{item.added_by.name}}</td>
                         <td>{{item.created_at}}</td>
-                        <td><a href="/removew/{{item.id}}">Remove from wishlist</a></td>
+                        <td>{% if item.added_by_id == request.session.user_id %}
+                            <form action="/delete/" method="POST"><a href="/delete/{{item.id}}">Delete</a></form>
+                            {% endif %}
+                        </td>
+                        <td>{% if item.added_by_id != request.session.user_id %}
+                            <a href="/removew/{{item.id}}">Remove from wishlist</a>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

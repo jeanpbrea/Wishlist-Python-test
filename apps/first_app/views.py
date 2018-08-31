@@ -61,6 +61,13 @@ def removew(request, item_id):
         user.wish_items.remove(item)
         return redirect('/dashboard/')
 
+def delete(request, item_id):
+    item = Item.objects.get(id=item_id).delete()
+    # user = User.objects.get(id=request.session['user_id'])
+    # Item.objects.delete(name = request.POST['item'], added_by=user)
+
+    return redirect ('/dashboard')
+
 
 def create_show(request):
     return render(request, 'first_app/create.html')
@@ -70,6 +77,7 @@ def create(request):
     Item.objects.create(name = request.POST['item'], added_by=user)
 
     return redirect ('/dashboard')
+
 
 def wish_items_show(request, item_id):
     curr_items = Item.objects.get(id=item_id)
